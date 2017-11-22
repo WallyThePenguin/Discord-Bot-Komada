@@ -110,21 +110,6 @@ case 'lottery':
 return msg.channel.send(`
 <:ezl:337567718666534913> **__Lottery__**
 When using the bot you’re put into a random drawing for ICE`)
-=======
-<:band:337827458915237888>  **__BAND:__** <https://ezlgg.com/band>
-
-<:discord:337828611187015680>  **__EZL LLC:__** <https://ezlgg.com/discord>
-
-<:twitter:337829617098424321> **__Twitter:__** 
-English: <https://twitter.com/EZL_Official>
-Espanol: <https://twitter.com/EZL_OficialES>
-
-<:facebook:337567436364709898> **__Facebook:__**
-English: <https://www.facebook.com/EZLOfficial>
-Espanol: <https://www.facebook.com/EZLOficialES>
-
-<:youtube:337567570251218946> **__YouTube:__** <https://www.youtube.com/c/EZLOfficial>`)
->>>>>>> 2276d1ac4ea855b666149fd997ce5b8d35aa7301
       default:
         return msg.reply(`That is not a valid type. Valid types are ${allowedTypes.join(', ')}`)
     }
