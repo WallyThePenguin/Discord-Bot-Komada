@@ -102,7 +102,7 @@ exports.getData = (matches, num) => {
     data.cs[player] = Math.floor(roster.farm)
     data.csMin[player] = Math.floor(roster.farm / (data.duration / 60))
     data.gold[player] = Math.floor(roster.gold).toLocaleString()
-    data.goldMin[player] = Math.floor(parseInt(roster.gold, 10) / (parseInt(data.duration, 10) / 60)).toLocaleString()
+    data.goldMin[player] = Math.floor(parseInt(roster.gold, 10) / (parseInt(duration, 10) / 60)).toLocaleString()
     data.items[player] = vg.items(roster.items)
     data.karma[player] = vg.karma(roster.karmaLevel)
     data.kills[player] = roster.kills

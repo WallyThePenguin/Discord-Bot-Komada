@@ -72,7 +72,7 @@ module.exports = class extends Command {
         .addField('**__Lifetime Stats__**',
           `**Win Rate:** ${Math.round((stats.wins / total) * 100)}% | **Wins:** ${stats.wins} | **Lost:** ${total - stats.wins} | **Played:** ${total} | 
 **Rank:** ${stats.played_ranked} | **Blitz:** ${stats.played_blitz} | **BR:** ${stats.played_aral} | **Casual:** ${stats.played_casual}
-**Karma**: ${vg.karma(stats.karmaLevel)}`)
+**Karma**: ${stats.karmaLevel}`)
         .addField('**__Current Streaks__** (Please SEMC Fix This Soon!)', `**Wins:** ${stats.winStreak} | **Loss:** ${stats.lossStreak}`)
         .addField('**__End Of Season VST (Not Trophies)__**', `**Season 4:** ${Math.round(stats.elo_earned_season_4)}
 **Season 5:** ${Math.round(stats.elo_earned_season_5)}

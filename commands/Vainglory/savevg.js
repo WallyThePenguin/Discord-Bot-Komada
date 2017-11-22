@@ -42,7 +42,7 @@ module.exports = class extends Command {
       region = await crypto.encrypt(region)
       const exists = await this.client.settings.users.get(msg.author.id)
       console.log(exists)
-      if (exists) {
+      if (exists.ign) {
         console.log('inside if')
         await this.client.providers.get('json').update('users', msg.author.id, { ign, region })
       } else {
