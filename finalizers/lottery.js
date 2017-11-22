@@ -11,6 +11,7 @@ module.exports = class extends Finalizer {
 
   run (msg, mes, start) {
     if (mes !== 'vg') return
+    if (!config.lottery.onOff) return
     let winChance = config.lottery.chance
     if (msg.guild && msg.guild.id === '67200685216641024') winChance = 35
     /* make a random number from 1 to lottery chance amount */

@@ -37,10 +37,18 @@ module.exports = class extends Command {
         return msg.reply('Sorry that account do not exist in the API. Please try again.')
       }
       let nickname = `${ign} - ${region.toUpperCase()}`
-      if (msg.guild.id === config.ezl.id) msg.member.setNickname(nickname)
+      if (msg.guild && msg.guild.id === config.ezl.id) msg.member.setNickname(nickname)
       ign = await crypto.encrypt(ign)
       region = await crypto.encrypt(region)
-      await this.client.settings.users.update(msg.author, { ign: ign, region: region }, msg.guild)
+      const exists = await this.client.settings.users.get(msg.author.id)
+      console.log(exists)
+      if (exists) {
+        console.log('inside if')
+        await this.client.providers.get('json').update('users', msg.author.id, { ign, region })
+      } else {
+        console.log('inside here')
+        await this.client.providers.get('json').create('users', msg.author.id, { ign, region, id: msg.author.id })
+      }
       return msg.reply(`Your IGN and Region are now saved into the database and now the bot will know who you are on all the ${this.client.guilds.size} servers.`)
     })
   }

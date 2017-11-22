@@ -1,4 +1,5 @@
 const { Command } = require('klasa')
+const crypto = require('../../functions/crypto/crypto')
 
 module.exports = class extends Command {
   constructor (...args) {
@@ -19,14 +20,12 @@ module.exports = class extends Command {
     })
   }
 
-  async run (msg, [member, ign, server]) {
-    if (msg.guild.id !== '67200685216641024') return msg.reply('Sorry, this command is only meant for the Vainglory Server. Come join at <http://superevil.co/discord>')
+  async run (msg, [member, username, server]) {
     let region = server
-    if (server === 'sg') region = 'sea'
-    const keys = ['ign', 'region']
-    for (let i = 0; i < keys.length; i++) {
-      this.client.settings.users.update(msg.author, { [keys[i]]: keys[i] === 'ign' ? ign : region })
-    }
+    if (server === 'sea') region = 'sg'
+    region = await crypto.encrypt(region)
+    let ign = await crypto.encrypt(username)
+    await this.client.settings.users.update(member.user, { ign: ign, region: region }, msg.guild.id)
     return msg.reply(`<@${member.id}> Your account is now saved into the database and now the bot will know who you are on all the ${this.client.guilds.size} servers.`)
   }
 
