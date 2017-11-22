@@ -15,7 +15,7 @@ module.exports = class extends Command {
       description: 'Lottery settings',
       quotedStringSupport: false,
       usage: '<onOff|chance|amount|cooldown> <value:str>',
-      usageDelim: undefined,
+      usageDelim: ' ',
       extendedHelp: 'No extended help available.'
     })
   }

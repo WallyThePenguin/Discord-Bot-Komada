@@ -54,9 +54,10 @@ module.exports = class extends Command {
     /* Must take an array */
     const playerNames = []
     playerNames.push(ign)
-    await vainglory.players.getByName(playerNames).then((players) => {
+    await vainglory.region(region).players.getByName(playerNames).then((players) => {
       if (players.errors) {
-        return msg.reply('Please check the IGN and Region and try again. The API returned an error saying incorrect IGN or region.')
+        console.log(players)
+        return msg.reply(`Please check the IGN and Region and try again. The API returned an error saying incorrect IGN or region.\n${players.messages}`)
       }
       const stats = players.player[0].stats
       const total = parseInt(stats.played_casual, 10) + parseInt(stats.played_ranked, 10) + parseInt(stats.played_aral, 10) + parseInt(stats.played_blitz, 10)

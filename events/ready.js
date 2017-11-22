@@ -6,16 +6,18 @@ module.exports = class extends Event {
     super(...args, { name: 'ready', enabled: true })
   }
 
-  async run () {
-    // To Create a Schema in Database uncomment this and change the '' at the bttom after add to the name of the schema
+  async run (client) {
 
+  }
+  async init () {
     async function validate (resolver, user) {
+      console.log('before the resolver')
       const result = await resolver.user(user)
-      if (!result) throw 'The parameter <String> is invalid. Please try again'
+      if (!result) throw 'The parameter <User> is invalid. Please try again'
       return result
     };
     const schema = {
-      quote: {
+      ign: {
         type: 'String',
         default: null,
         array: false

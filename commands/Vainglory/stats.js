@@ -75,18 +75,32 @@ module.exports = class extends Command {
         gameModes[currentMode]++
       }
       // Loop every player in every match to check which the IGN is.
-      for (let a = 0; a < 3; a++) {
-        for (let b = 0; b < 2; b++) {
-          // Checks Blue side
-          if (roster[b].rosterParticipants[a].participantPlayer.data.attributes.name === ign) {
-            rosterI = b
-            rosterP = a
+      for (const team of roster) {
+        for (const player of team.rosterParticipants) {
+          if (player.participantPlayer.data.attributes.name === ign) {
+            if (team === roster[0]) rosterI = 0
+            else rosterI = 1
+            for (let i = 0; i < team.rosterParticipants.length; i++) {
+              if (team.rosterParticipants[i] !== player) continue
+              rosterP = i
+              break
+            }
             break
           }
         }
-        // Cancel the loop if it has a value assigned
-        if (rosterI) break
       }
+      // for (let a = 0; a < 3; a++) {
+      //   for (let b = 0; b < 2; b++) {
+      //     // Checks Blue side
+      //     if (roster[b].rosterParticipants[a].participantPlayer.data.attributes.name === ign) {
+      //       rosterI = b
+      //       rosterP = a
+      //       break
+      //     }
+      //   }
+      //   // Cancel the loop if it has a value assigned
+      //   if (rosterI) break
+      // }
       roster = await roster[rosterI].rosterParticipants[rosterP].data.attributes.stats
       // Add the value of each person to their respective vars
       golds += Math.round(roster.gold)
